@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}
+kuros-play
+{% endblock %}
+
+{% block content %}
+{% include 'includes/navbar.html' %}
+<div class="container container-md">
+
+    <div class="container mt-5">
+        <h1 class="text-center mb-5">Capital Quiz</h1>
+        <div class="row">
+          <div class="col-md-6 mx-auto">
+            <div class="card">
+                <img src="{{ game.flag }}" class="card-img-top" alt="Card image">
+                <div class="card-header">
+                  <h4 class="card-title">{{ game.question }}</h4>
+                </div>
+                <div class="card-body">
+                <form method="POST" action="{% url 'check_answer' %}">
+                  {% csrf_token %}
+                  {% for option in game.variants %}
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="answer" id="option{{ forloop.counter }}" value="{{ option }}">
+                      <label class="form-check-label" for="option{{ forloop.counter }}">{{ option }}</label>
+                    </div>
+                  {% endfor %}
+                  
+                  <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+</div>
+{% include 'includes/footer.html' %}
+{% endblock %}

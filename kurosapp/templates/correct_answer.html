@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if answer == game.answer %}
+<div class="container mt-5">
+    <h1 class="text-center mb-5">Correct Answer</h1>
+    <p>Congratulations!, your answer was correct. Continue enjoying.</p>
+    <a href="{% url 'index' %}" class="btn btn-primary mt-3">Try Another</a>
+</div>
+    {% else %}
+        <h1>Incorrect Answer</h1>
+        <p>Sorry, the answer you provided is incorrect. Please try again.</p>
+        
+    {% endif %}
+{% endblock %}
